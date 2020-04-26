@@ -19,7 +19,7 @@ from io import BytesIO
 from collections import Counter
 import random, os
 
-PLOTLY_LOGO = "juice-calculator/static/—Pngtree—orange juice glass vector_3546792.png"
+PLOTLY_LOGO = "./static/—Pngtree—orange juice glass vector_3546792.png"
 
 app = dash.Dash(external_stylesheets=[dbc.themes.YETI])
 server = app.server
@@ -315,11 +315,11 @@ maslulSix = html.Div([
 ###############################################################################
 """Body Components"""
 # Cards for loans
-path="juice-calculator/static/img/"
+path="./static/img/"
 
 cardmaslulOne = dbc.Card(
     [
-        dbc.CardImg(src=("juice-calculator/static/img/" + random.choice([x for x in os.listdir(path) if os.path.isfile(os.path.join(path, x))])), top=True),
+        dbc.CardImg(src=("./static/img/" + random.choice([x for x in os.listdir(path) if os.path.isfile(os.path.join(path, x))])), top=True),
         dbc.CardBody(
             [
                 html.H3(id='cardTitle1', className="card-title", style={'textAlign':"center"}),
@@ -343,7 +343,7 @@ cardmaslulOne = dbc.Card(
 
 cardmaslulTwo = dbc.Card(
     [
-        dbc.CardImg(src=("juice-calculator/static/img/" + random.choice([x for x in os.listdir(path) if os.path.isfile(os.path.join(path, x))])), top=True),
+        dbc.CardImg(src=("./static/img/" + random.choice([x for x in os.listdir(path) if os.path.isfile(os.path.join(path, x))])), top=True),
         dbc.CardBody(
             [
                 html.H3(id='cardTitle2', className="card-title", style={'textAlign':"center"}),
@@ -367,7 +367,7 @@ cardmaslulTwo = dbc.Card(
 
 cardmaslulThree = dbc.Card(
     [
-        dbc.CardImg(src=("juice-calculator/static/img/" + random.choice([x for x in os.listdir(path) if os.path.isfile(os.path.join(path, x))])), top=True),
+        dbc.CardImg(src=("./static/img/" + random.choice([x for x in os.listdir(path) if os.path.isfile(os.path.join(path, x))])), top=True),
         dbc.CardBody(
             [
                 html.H3(id='cardTitle3', className="card-title", style={'textAlign':"center"}),
@@ -391,7 +391,7 @@ cardmaslulThree = dbc.Card(
 
 cardmaslulFour = dbc.Card(
     [
-        dbc.CardImg(src=("juice-calculator/static/img/" + random.choice([x for x in os.listdir(path) if os.path.isfile(os.path.join(path, x))])), top=True),
+        dbc.CardImg(src=("./static/img/" + random.choice([x for x in os.listdir(path) if os.path.isfile(os.path.join(path, x))])), top=True),
         dbc.CardBody(
             [
                 html.H3(id='cardTitle4', className="card-title", style={'textAlign':"center"}),
@@ -415,7 +415,7 @@ cardmaslulFour = dbc.Card(
 
 cardmaslulFive = dbc.Card(
     [
-        dbc.CardImg(src=("juice-calculator/static/img/" + random.choice([x for x in os.listdir(path) if os.path.isfile(os.path.join(path, x))])), top=True),
+        dbc.CardImg(src=("./static/img/" + random.choice([x for x in os.listdir(path) if os.path.isfile(os.path.join(path, x))])), top=True),
         dbc.CardBody(
             [
                 html.H3(id='cardTitle5', className="card-title", style={'textAlign':"center"}),
@@ -439,7 +439,7 @@ cardmaslulFive = dbc.Card(
 
 cardmaslulSix = dbc.Card(
     [
-        dbc.CardImg(src=("juice-calculator/static/img/" + random.choice([x for x in os.listdir(path) if os.path.isfile(os.path.join(path, x))])), top=True),
+        dbc.CardImg(src=("./static/img/" + random.choice([x for x in os.listdir(path) if os.path.isfile(os.path.join(path, x))])), top=True),
         dbc.CardBody(
             [
                 html.H3(id='cardTitle6', className="card-title", style={'textAlign':"center"}),
@@ -488,7 +488,7 @@ rows = html.Div(
     [
         dbc.Row(
             [
-                        dbc.Col(dbc.Col(html.Img(src="juice-calculator/static/img/calc.png", style={'float': 'right', 'clear': 'right', 'margin-left': '19%', 'height': '50vh'}))),
+                        dbc.Col(dbc.Col(html.Img(src="./static/img/calc.png", style={'float': 'right', 'clear': 'right', 'margin-left': '19%', 'height': '50vh'}))),
                         dbc.Col(dbc.Col(dbc.Card(head_card, color="info", inverse=True)))
             ],
             style={'margin': 'auto', 'width': '90vw'}
