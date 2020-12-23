@@ -9,12 +9,12 @@ ipmt_heb = "תשלום ריבית"
 
 def generate_pd_per_maslul_declining(cpi, madad, amount, interest, period):
     inflation = madad * len(cpi)  # 1.48953% due to Bank Leumi
-    minf = (1 + inflation/1200)
-    interest_rate = interest/1200
+    minf = (1 + inflation / 1200)
+    interest_rate = interest / 1200
     periods = np.arange(period) + 1
     ppmt_nominal = amount / period
-    ppmt_cpi = np.array(list(
-        ppmt_nominal * minf ** i for i in range(1, period + 1)))
+    ppmt_cpi = np.array([
+        ppmt_nominal * minf ** i for i in range(1, period + 1)])
     balance = get_balance(amount, period, ppmt_cpi, minf)
 
     # IPMT payments

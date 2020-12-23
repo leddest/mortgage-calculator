@@ -14,12 +14,11 @@ def generate_pd_per_maslul_straight(cpi, madad, amount, interest, period):
     minf = (1 + inflation / 1200)
     interest_rate = interest / 1200
     periods = np.arange(period) + 1
-    # pmt_nominal = round(npf.pmt(interest_rate, period, -amount), 2)
     ipmt_nominal = npf.ipmt(interest_rate, periods, period, -amount)
     total_ipmt_nominal = np.ndarray.sum(ipmt_nominal)
 
     # Inflation list (CPI)
-    inf = list((1 + inflation / 1200) ** y for y in range(1, period + 1))
+    inf = [(1 + inflation / 1200) ** y for y in range(1, period + 1)]
     ipmt_cpi = ipmt_nominal * inf
 
     # Payment against loan principal.
@@ -29,7 +28,7 @@ def generate_pd_per_maslul_straight(cpi, madad, amount, interest, period):
 
     # Balance
     start = amount * minf
-    balance = list()
+    balance = []
     for i in range(len(ppmt_cpi)):
         balance.append((start-ppmt_cpi[i]) * minf)
         start = (start-ppmt_cpi[i]) * minf
