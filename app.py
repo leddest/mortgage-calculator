@@ -8,11 +8,10 @@ import dash_core_components as dcc
 from dash.dependencies import Input, Output, State
 import dash_html_components as html
 from flask import Flask
-import numpy as np
-import numpy_financial as npf
 import pandas as pd
 from plotly.graph_objs.bar import Marker
 import plotly.graph_objects as go
+import plotly.express as px
 
 from scripts.declining_schedule import generate_pd_per_maslul_declining
 from scripts.straight_schedule import generate_pd_per_maslul_straight
@@ -693,7 +692,8 @@ def display_value(
     '''גרף נתוני כל המשכנתא'''
     df_total.index += 1
     try:
-        fig = df_total.iplot(asFigure=True)
+        fig = df_total.loc[:, df_total.columns != "חודש"] \
+            .round(decimals=0).iplot(asFigure=True)
     except KeyError:
         raise dash.exceptions.PreventUpdate
 
@@ -712,6 +712,11 @@ def display_value(
     fig_sums.update_layout(
         title_text='התפלגות סך ההחזרים עד סוף תקופת המשכנתא',
         title_x=0.5,
+    )
+    fig_sums.update_traces(
+        hoverinfo='label',
+        textposition='inside',
+        textinfo='percent+value'
     )
 
     '''גרך תשלומים חודשיים לפי ריבית - הצמדה'''
@@ -840,4 +845,4 @@ for i in [2]:
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run_server(debug=False)

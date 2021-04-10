@@ -23,12 +23,14 @@ def generate_pd_per_maslul_declining(cpi, madad, amount, interest, period):
     total_ipmt_nominal = np.sum(ipmt_nominal)
 
     pmt = ppmt_cpi + ipmt_cpi
+    cumulative = get_cumulative(pmt, period)
     maslul_df = pd.DataFrame(
         {
             months_heb: periods,
             ppmt_heb: ppmt_cpi,
             ipmt_heb: ipmt_cpi,
             pmt_heb: pmt,
+            "תשלום מצטבר": cumulative,
             "יתרה": balance
         }
     )
@@ -49,3 +51,11 @@ def get_ipmt(amount, balance, annual_interest_rate, minf):
     for i in range(len(balance) - 1):
         ipmt_cpi.append(balance[i] * annual_interest_rate)
     return np.array(ipmt_cpi)
+
+
+def get_cumulative(pmt, period):
+    cum = np.arange(period, dtype=float)
+    cum[0] = pmt[0]
+    for i in range(period - 1):
+        cum[i + 1] = cum[i] + pmt[i + 1]
+    return cum

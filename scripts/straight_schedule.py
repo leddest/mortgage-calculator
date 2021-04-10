@@ -25,6 +25,7 @@ def generate_pd_per_maslul_straight(cpi, madad, amount, interest, period):
     ppmt_nominal = npf.ppmt(interest_rate, periods, period, -amount)
     ppmt_cpi = ppmt_nominal * inf
     pmt = ppmt_cpi + ipmt_cpi
+    cumulative = get_cumulative(pmt, period)
 
     # Balance
     start = amount * minf
@@ -40,7 +41,16 @@ def generate_pd_per_maslul_straight(cpi, madad, amount, interest, period):
             ppmt_heb: ppmt_cpi,
             ipmt_heb: ipmt_cpi,
             pmt_heb: pmt,
+            "תשלום מצטבר": cumulative,
             "יתרה": balance
         }
     )
     return maslul_df, total_ipmt_nominal
+
+
+def get_cumulative(pmt, period):
+    cum = np.arange(period, dtype=float)
+    cum[0] = pmt[0]
+    for i in range(period - 1):
+        cum[i + 1] = cum[i] + pmt[i + 1]
+    return cum
